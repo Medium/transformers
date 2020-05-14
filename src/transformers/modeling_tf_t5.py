@@ -1041,6 +1041,8 @@ class TFT5ForConditionalGeneration(TFT5PreTrainedModel):
 
         # retrieve arguments
         input_ids = kwargs.get("input_ids", None)
+        if input_ids is None:
+            input_ids = kwargs.get("inputs", None)
         decoder_input_ids = kwargs.get("decoder_input_ids", None)
         attention_mask = kwargs.get("attention_mask", None)
         encoder_outputs = kwargs.get("encoder_outputs", None)
