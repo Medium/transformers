@@ -1040,7 +1040,7 @@ class TFT5ForConditionalGeneration(TFT5PreTrainedModel):
             kwargs["inputs"] = inputs
 
         # retrieve arguments
-        input_ids = kwargs.get("inputs", None)
+        input_ids = kwargs.get("input_ids", None)
         decoder_input_ids = kwargs.get("decoder_input_ids", None)
         attention_mask = kwargs.get("attention_mask", None)
         encoder_outputs = kwargs.get("encoder_outputs", None)
@@ -1089,9 +1089,10 @@ class TFT5ForConditionalGeneration(TFT5PreTrainedModel):
         sequence_output = decoder_outputs[0] * (self.model_dim ** -0.5)
         embed_tokens = self.get_output_embeddings()
         lm_logits = embed_tokens(sequence_output, mode="linear")
-        decoder_outputs = (lm_logits,) + decoder_outputs[1:]
+        return lm_logits
+        # decoder_outputs = (lm_logits,) + decoder_outputs[1:]
 
-        return decoder_outputs + encoder_outputs
+        # return decoder_outputs + encoder_outputs
 
     def prepare_inputs_for_generation(self, input_ids, past, attention_mask, use_cache, **kwargs):
         assert past is not None, "past has to be defined for encoder_outputs"
