@@ -1613,8 +1613,10 @@ class TFSharedEmbeddings(tf.keras.layers.Layer):
 
         x = tf.reshape(inputs, [-1, self.hidden_size])
         logits = tf.matmul(x, self.weight, transpose_b=True)
-
-        return tf.reshape(logits, first_dims + [self.vocab_size])
+        out = tf.reshape(logits, first_dims + [self.vocab_size])
+        logger.info(f'vocav size: {self.vocab_size}')
+        logger.info(f'output shape: {out.shape}')
+        return out
 
 
 class TFSequenceSummary(tf.keras.layers.Layer):
