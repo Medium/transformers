@@ -1096,9 +1096,9 @@ class TFT5ForConditionalGeneration(TFT5PreTrainedModel):
         if kwargs.get("train"):
             return lm_logits
             
-        decoder_outputs = (lm_logits,) + decoder_outputs[1:]
+        # decoder_outputs = (lm_logits,) + decoder_outputs[1:]
 
-        return decoder_outputs + encoder_outputs
+        # return decoder_outputs + encoder_outputs
 
     def prepare_inputs_for_generation(self, input_ids, past, attention_mask, use_cache, **kwargs):
         assert past is not None, "past has to be defined for encoder_outputs"
