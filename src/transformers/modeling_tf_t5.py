@@ -906,6 +906,8 @@ class TFT5Model(TFT5PreTrainedModel):
 
         # retrieve arguments
         input_ids = kwargs.get("inputs", None)
+        if input_ids is None:
+            input_ids = kwargs.get("input_ids", None)
         inputs_embeds = kwargs.get("inputs_embeds", None)
         attention_mask = kwargs.get("attention_mask", None)
         encoder_outputs = kwargs.get("encoder_outputs", None)
